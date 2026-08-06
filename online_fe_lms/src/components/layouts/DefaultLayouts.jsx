@@ -1,9 +1,20 @@
-import React from 'react'
+import React from "react";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 
-const DefaultLayouts = () => {
+const DefaultLayouts = ({ children }) => {
   return (
-    <div>DefaultLayouts</div>
-  )
-}
+    <div>
+      {/* navbar  */}
 
-export default DefaultLayouts
+      <Header />
+      {/* main body  */}
+      <main className="main"></main>
+
+      {/* footer  */}
+      <Footer />
+    </div>
+  );
+};
+
+export default DefaultLayouts;
