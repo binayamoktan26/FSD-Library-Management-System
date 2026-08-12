@@ -7,8 +7,17 @@ import {
   SignUpPage,
   ForgetPasswordPage,
   BookLandingPage,
+  UserLayouts,
+  Books,
+  DefaultLayouts,
+  EditBookPage,
+  NewBook,
+  ReviewPage,
+  UserPage,
+  Profile,
+  BorrowPage,
 } from "../pages";
-import DefaultLayouts from "../components/layouts/DefaultLayouts";
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -20,7 +29,16 @@ const AppRoutes = () => {
         <Route path="forget-password" element={<ForgetPasswordPage />}></Route>
       </Route>
       {/* Private Pages  */}
-      <Route path="/user" element={<DashboardPage />} />
+      <Route path="/user" element={<UserLayouts />}>
+        <Route index element={<DashboardPage />} />
+        <Route path="books" element={<Books />} />
+        <Route path="reviews" element={<ReviewPage />} />
+        <Route path="all" element={<UserPage />} />
+        <Route path="borrow-history" element={<BorrowPage />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="new-book" element={<NewBook />} />
+        <Route path="edit-book" element={<EditBookPage />} />
+      </Route>
     </Routes>
   );
 };
