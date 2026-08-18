@@ -2,7 +2,9 @@ import express from "express";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
-
+//db connection
+import { dbConnect } from "./config/dbConfig.js";
+dbConnect();
 // middleware
 import cors from "cors";
 import morgan from "morgan";
