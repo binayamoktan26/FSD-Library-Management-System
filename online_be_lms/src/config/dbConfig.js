@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const dbConnect = async() => {
+export const dbConnect = () => {
   if (!process.env.MONGO_URL) {
     throw new Error("MONGO_URL is not defined in .env file");
   }
