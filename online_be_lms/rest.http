@@ -9,5 +9,5 @@ GET {{rootUrl}}/
 ### Auth api
 
 
-### post new user
+### post new user 
 POST {{rootUrl}}/api/v1/auth/register
