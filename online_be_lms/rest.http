@@ -16,10 +16,10 @@ Content-Type: application/json
 {
    
     "fName" : "ishika ",
-    "lName " : "moktan ",
-    "email " : "a@a.com ",
-    "phone " : "112345 ",
-    "password " : "moktan "
+    "lName" : "moktan ",
+    "email" : "a@a.com ",
+    "phone" : "112345",
+    "password" : "moktan"
  
 
 }

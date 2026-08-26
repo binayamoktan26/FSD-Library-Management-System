@@ -1,4 +1,4 @@
-import userSchema from "./userSchema";
+import userSchema from "./UserSchema.js";
 
 //insert new user
 
