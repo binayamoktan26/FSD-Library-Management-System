@@ -1,6 +1,6 @@
 import { hashPassword } from "../utils/bcrypt.js";
 import { createNewUser } from "../models/user/UserModel.js";
-export const insertNewUser = async (req, res, error) => {
+export const insertNewUser = async (req, res, next) => {
   try {
     //todo signUp process
     // receive the user data
@@ -24,6 +24,12 @@ export const insertNewUser = async (req, res, error) => {
       message: "unable to create  an account , try again later .",
     });
   } catch (error) {
-    console.log(error);
+    if (error.message.includes("E11000 duplicate key error collection")) {
+      error.message =
+        "The email already exist for another user try differ email or reset the password ";
+      error.statusCode = 200;
+    }
+
+    next(error);
   }
 };

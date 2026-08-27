@@ -6,11 +6,7 @@ const PORT = process.env.PORT || 8000;
 import { dbConnect } from "./src/config/dbConfig.js";
 // const dbConnection = await dbConnect();
 // console.log(dbConnection);
-dbConnect()
-  .then(() => {
-    console.log("DB connect successfully");
-  })
-  .catch((error) => console.log(error));
+
 // middleware
 import cors from "cors";
 import morgan from "morgan";
@@ -20,6 +16,7 @@ app.use(express.json()); // it help to receive all the data send from the fronte
 
 //api endpoints
 import authRoutes from "./src/routes/authRoute.js";
+import { errorHandler } from "./src/middleware/errorHandler.js";
 
 app.use("/api/v1/auth", authRoutes);
 // server status
@@ -29,6 +26,13 @@ app.get("/", (req, res) => {
     message: "Server is running",
   });
 });
+//error handler
+app.use(errorHandler);
+dbConnect()
+  .then(() => {
+    console.log("DB connect successfully");
+  })
+  .catch((error) => console.log(error));
 
 app.listen(PORT, (error) => {
   error
