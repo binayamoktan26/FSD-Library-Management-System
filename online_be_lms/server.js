@@ -17,17 +17,18 @@ app.use(express.json()); // it help to receive all the data send from the fronte
 //api endpoints
 import authRoutes from "./src/routes/authRoute.js";
 import { errorHandler } from "./src/middleware/errorHandler.js";
+import { responseClient } from "./src/middleware/responseClient.js";
 
 app.use("/api/v1/auth", authRoutes);
+//error handler
+app.use(errorHandler);
 // server status
 
 app.get("/", (req, res) => {
-  res.json({
-    message: "Server is running",
-  });
+  const message = "Server is running";
+  responseClient({ req, res, message });
 });
-//error handler
-app.use(errorHandler);
+
 dbConnect()
   .then(() => {
     console.log("DB connect successfully");
