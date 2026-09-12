@@ -4,12 +4,16 @@ import Form from "react-bootstrap/Form";
 import { CustomInput } from "../../components/customInput/CustomInput";
 import { signUpInputs } from "../../assets/custominputs/userSignUpInputs.js";
 import useForm from "../../hooks/useForm.js";
+import { signUpNewUserApi } from "../../services/authAPI.js";
 const initialState = {};
 const SignUp = () => {
   const { form, setForm, handleOnChange } = useForm(initialState);
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
+    const result = await signUpNewUserApi(form);
+    console.log(result);
   };
+
   console.log(form);
   return (
     <div className=" d-flex justify-content-center align-items-center">
