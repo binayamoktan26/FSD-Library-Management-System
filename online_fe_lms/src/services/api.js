@@ -8,9 +8,9 @@ export const apiProcessor = async ({ method, url, payload }) => {
       data: payload,
       //   headers
     });
-    console.log(response);
+    console.log(response.data);
     return response;
   } catch (error) {
-    console.error(error);
+    return error.response.data;
   }
 };

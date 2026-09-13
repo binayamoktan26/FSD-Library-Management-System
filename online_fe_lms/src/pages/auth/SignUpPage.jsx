@@ -10,11 +10,18 @@ const SignUp = () => {
   const { form, setForm, handleOnChange } = useForm(initialState);
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const result = await signUpNewUserApi(form);
+
+    console.log(form);
+    // differentiate confirm password from rest of the form data
+    const { confirmPassword, ...rest } = form;
+    //check password and confirm password match
+    if (confirmPassword !== rest.password)
+      return alert("Password do not match");
+
+    const result = await signUpNewUserApi(rest);
     console.log(result);
   };
 
-  console.log(form);
   return (
     <div className=" d-flex justify-content-center align-items-center">
       {" "}
