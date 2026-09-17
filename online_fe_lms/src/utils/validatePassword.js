@@ -11,7 +11,7 @@ export const validatePassword = (password = "", confirmPassword = "") => {
 
   !/[!@#$%^&*(){}|]/.test(password) &&
     error.push("Password must contain at least one special character");
-  password === confirmPassword &&
+  password !== confirmPassword &&
     error.push("Password and confirm password do not match");
   return error;
 };

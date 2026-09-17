@@ -5,6 +5,7 @@ import { CustomInput } from "../../components/customInput/CustomInput";
 import { signUpInputs } from "../../assets/custominputs/userSignUpInputs.js";
 import useForm from "../../hooks/useForm.js";
 import { signUpNewUserApi } from "../../services/authAPI.js";
+import { toast } from "react-toastify";
 const initialState = {};
 const SignUp = () => {
   const { form, setForm, handleOnChange, passwordErrors } =
@@ -19,8 +20,11 @@ const SignUp = () => {
     if (confirmPassword !== rest.password)
       return alert("Password do not match");
 
-    const result = await signUpNewUserApi(rest);
-    console.log(result);
+    const { status, message } = await signUpNewUserApi(rest);
+    // to empty the form after successful submission
+    toast[status](message);
+    status === "success" && setForm(initialState);
+    console.log(status, message);
   };
   console.log(passwordErrors);
   return (
@@ -36,9 +40,11 @@ const SignUp = () => {
           <CustomInput key={input.name} {...input} onChange={handleOnChange} />
         ))}
         <div className="py-3">
-          <ul className="text-danger">
+          <ul className="text-danger ">
             {passwordErrors.map((msg, index) => (
-              <li key={index}>{msg}</li>
+              <li key={index} style={{ fontSize: "12px" }}>
+                {msg}
+              </li>
             ))}
           </ul>
         </div>

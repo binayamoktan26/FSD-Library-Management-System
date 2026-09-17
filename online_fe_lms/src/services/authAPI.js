@@ -8,7 +8,9 @@ export const signUpNewUserApi = async (payload) => {
     url: authApiEP + "/register",
     method: "POST",
     payload,
+    showToast: true,
   };
   const result = await apiProcessor(obj);
   console.log(result);
+  return result;
 };
