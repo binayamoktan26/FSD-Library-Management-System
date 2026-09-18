@@ -14,7 +14,8 @@ import {
   UserPage,
   Profile,
   BorrowPage,
-} from "../pages";
+  VerifyUser,
+} from "../pages/index.js";
 import UserLayouts from "@components/layouts/UserLayouts";
 import DefaultLayouts from "@components/layouts/DefaultLayouts";
 
@@ -26,6 +27,7 @@ const AppRoutes = () => {
         <Route index element={<HomePage />} />
         <Route path="login" element={<SignInPage />}></Route>
         <Route path="signup" element={<SignUpPage />}></Route>
+        <Route path="verify-user" element={<VerifyUser />}></Route>
         <Route path="forget-password" element={<ForgetPasswordPage />}></Route>
       </Route>
       {/* Private Pages  */}
