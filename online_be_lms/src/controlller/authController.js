@@ -51,3 +51,11 @@ export const insertNewUser = async (req, res, next) => {
     next(error);
   }
 };
+
+export const activateUser = async (req, res, next) => {
+  try {
+    const { sessioId, t } = req.body;
+  } catch (error) {
+    next(error);
+  }
+};

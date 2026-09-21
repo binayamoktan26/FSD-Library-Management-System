@@ -27,7 +27,7 @@ const AppRoutes = () => {
         <Route index element={<HomePage />} />
         <Route path="login" element={<SignInPage />}></Route>
         <Route path="signup" element={<SignUpPage />}></Route>
-        <Route path="verify-user" element={<VerifyUser />}></Route>
+        <Route path="activate-user" element={<VerifyUser />}></Route>
         <Route path="forget-password" element={<ForgetPasswordPage />}></Route>
       </Route>
       {/* Private Pages  */}
