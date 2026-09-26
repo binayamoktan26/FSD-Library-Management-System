@@ -15,11 +15,25 @@ Content-Type: application/json
 
 {
    
-    "fName" : "ishika ",
+    "fName" : "minato ",
     "lName" : "moktan ",
-    "email" : "slloa@a.com ",
+    "email" : "ssoa@a.com ",
     "phone" : "112345",
     "password" : "moktan"
+ 
+
+}
+
+### post activate user
+
+POST {{rootUrl}}/api/v1/auth/activate-user
+Content-Type: application/json
+
+{
+   
+    "sessionId" : "6ab807ce4dc668668ba9a8a7",
+    "t" : "ab8d0552-951d-4329-9e1e-b9f7b97cc5c7",
+   
  
 
 }

@@ -23,7 +23,7 @@ export const insertNewUser = async (req, res, next) => {
         association: user.obj,
       });
       if (session?._id) {
-        const url = `${process.env.ROOT_URL}/activate-use?sessionId=${session._id}&t=${session.token}`;
+        const url = `${process.env.ROOT_URL}/activate-user?sessionId=${session._id}&t=${session.token}`;
 
         //send this url to their email
         console.log(url);
@@ -54,7 +54,11 @@ export const insertNewUser = async (req, res, next) => {
 
 export const activateUser = async (req, res, next) => {
   try {
-    const { sessioId, t } = req.body;
+    const { sessionId, t } = req.body;
+    console.log(sessionId, t);
+    const message = "To do activate  user process. ";
+
+    return responseClient({ req, res, message });
   } catch (error) {
     next(error);
   }
