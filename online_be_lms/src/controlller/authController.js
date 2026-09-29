@@ -1,9 +1,15 @@
 import { hashPassword } from "../utils/bcrypt.js";
-import { createNewUser } from "../models/user/UserModel.js";
+import { createNewUser, updateUser } from "../models/user/UserModel.js";
 import { responseClient } from "../middleware/responseClient.js";
-import { createNewSession } from "../models/session/SessionModel.js";
+import {
+  createNewSession,
+  deleteSession,
+} from "../models/session/SessionModel.js";
 import { v4 as uuidv4 } from "uuid";
-import { userActivationUrlEmail } from "../services/email/emailService.js";
+import {
+  userActivatedNotificationEmail,
+  userActivationUrlEmail,
+} from "../services/email/emailService.js";
 export const insertNewUser = async (req, res, next) => {
   try {
     //todo signUp process
@@ -20,8 +26,9 @@ export const insertNewUser = async (req, res, next) => {
 
       const session = await createNewSession({
         token: uuidv4(),
-        association: user.obj,
+        association: user.email,
       });
+      console.log(session);
       if (session?._id) {
         const url = `${process.env.ROOT_URL}/activate-user?sessionId=${session._id}&t=${session.token}`;
 
@@ -56,9 +63,33 @@ export const activateUser = async (req, res, next) => {
   try {
     const { sessionId, t } = req.body;
     console.log(sessionId, t);
-    const message = "To do activate  user process. ";
+    const session = await deleteSession({
+      _id: sessionId,
+      token: t,
+    });
+    if (session?._id) {
+      //update user to active
+      const user = await updateUser(
+        { email: session.association },
+        {
+          status: "active",
+        },
+      );
+      if (user?._id) {
+        //respond
+        //send email notification
 
-    return responseClient({ req, res, message });
+        userActivatedNotificationEmail({ email: user.email, name: user.fName });
+
+        const message =
+          "Your accound has been activated , you may logI in Now ";
+
+        return responseClient({ req, res, message });
+      }
+    }
+    const message = "Invalid Link or token expired !";
+    const statusCode = 400;
+    responseClient({ req, res, message });
   } catch (error) {
     next(error);
   }

@@ -7,12 +7,12 @@ const sessionSchema = new mongoose.Schema(
       required: true,
     },
     association: {
-      type: String,
+      type: mongoose.Schema.Types.Mixed,
     },
     expire: {
       type: Date,
       required: true,
-      default: new Date(Date.now() + 3600000), //1hr  
+      default: new Date(Date.now() + 36000000), //1hr
       expires: 0, //for delete  this token
     },
   },
