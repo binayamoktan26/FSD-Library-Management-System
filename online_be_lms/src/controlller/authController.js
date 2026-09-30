@@ -89,7 +89,7 @@ export const activateUser = async (req, res, next) => {
     }
     const message = "Invalid Link or token expired !";
     const statusCode = 400;
-    responseClient({ req, res, message });
+    responseClient({ req, res, message, statusCode });
   } catch (error) {
     next(error);
   }
