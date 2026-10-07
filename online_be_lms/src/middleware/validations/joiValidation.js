@@ -14,13 +14,34 @@ export const validateData = (req, res, next) => {
   });
 
   // pass your data , req.body , to the schema\
-  const value = schema.validate(req.body);
+  const { value, error } = schema.validate(req.body);
   console.log(value);
   if (value.error) {
     return responseClient({
       req,
       res,
-      message: value.error.message,
+      message: error.message,
+    });
+  }
+  //if pass go next () 0or response  from here
+  next();
+};
+export const userActivationDataValidation = (req, res, next) => {
+  //create schema or rule
+
+  const schema = Joi.object({
+    sessionId: Joi.string().min(10).max(100).required(),
+    t: Joi.string().min(3).max(30).required(),
+  });
+
+  // pass your data , req.body , to the schema\
+  const { value, error } = schema.validate(req.body);
+  console.log(value);
+  if (value.error) {
+    return responseClient({
+      req,
+      res,
+      message: error.message,
     });
   }
   //if pass go next () 0or response  from here
