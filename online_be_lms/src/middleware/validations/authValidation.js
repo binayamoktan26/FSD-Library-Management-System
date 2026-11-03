@@ -8,6 +8,7 @@ import {
   PASSWORD,
   SESSION_REQ,
   TOKEN_REQ,
+  PASSWORD_REQ,
 } from "./joiConst.js";
 
 export const newUserDataValidation = (req, res, next) => {
@@ -16,7 +17,7 @@ export const newUserDataValidation = (req, res, next) => {
     lName: LNAME_REQ,
     email: EMAIL_REQ,
     phone: PHONE_REQ,
-    password: PASSWORD,
+    password: PASSWORD_REQ,
   };
   return validateData({ req, res, next, obj });
 };
@@ -30,4 +31,13 @@ export const userActivationDataValidation = (req, res, next) => {
 
   // pass your data , req.body , to the schema\
   validateData({ req, res, next, obj });
+};
+
+export const loginUserDataValidation = (req, res, next) => {
+  // create schema or rule
+
+  const obj = {
+    email: EMAIL_REQ,
+    password: PASSWORD,
+  };
 };

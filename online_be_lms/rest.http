@@ -37,3 +37,13 @@ Content-Type: application/json
 
 }
 
+### login user
+
+POST {{rootUrl}}/api/v1/auth/loginUser
+Content-Type: application/json
+
+{
+  "email": "bin@cfllege.edu.np",
+  "password":"abunnyA!12345678"
+}
+

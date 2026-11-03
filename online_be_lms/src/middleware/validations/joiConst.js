@@ -11,7 +11,8 @@ export const EMAIL = Joi.string().email({
 });
 export const EMAIL_REQ = EMAIL.required();
 
-export const PASSWORD = Joi.string().required();
+export const PASSWORD = Joi.string();
+export const PASSWORD_REQ = PASSWORD.required();
 
 export const PHONE = Joi.number().min(3);
 export const PHONE_REQ = PHONE.required();

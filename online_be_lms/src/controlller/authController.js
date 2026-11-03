@@ -94,3 +94,22 @@ export const activateUser = async (req, res, next) => {
     next(error);
   }
 };
+export const loginUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    console.log(email, password);
+    //get user by email
+
+    // compare pasword
+
+    //  create jwt
+
+    // response jwt s
+
+    const message = "To do login ";
+    const statusCode = 400;
+    responseClient({ req, res, message, statusCode });
+  } catch (error) {
+    next(error);
+  }
+};
