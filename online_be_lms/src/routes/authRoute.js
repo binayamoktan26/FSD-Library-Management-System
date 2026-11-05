@@ -15,6 +15,6 @@ const router = express.Router();
 //User signUp
 router.post("/register", newUserDataValidation, insertNewUser);
 router.post("/activate-user", userActivationDataValidation, activateUser);
-router.post("/login", loginUserDataValidation, loginUser);
+router.post("/loginUser", loginUserDataValidation, loginUser);
 
 export default router;

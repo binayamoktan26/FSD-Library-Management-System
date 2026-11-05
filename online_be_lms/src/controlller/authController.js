@@ -1,5 +1,9 @@
-import { hashPassword } from "../utils/bcrypt.js";
-import { createNewUser, updateUser } from "../models/user/UserModel.js";
+import { hashPassword, comparePassword } from "../utils/bcrypt.js";
+import {
+  createNewUser,
+  updateUser,
+  getUserByEmail,
+} from "../models/user/UserModel.js";
 import { responseClient } from "../middleware/responseClient.js";
 import {
   createNewSession,
@@ -10,6 +14,7 @@ import {
   userActivatedNotificationEmail,
   userActivationUrlEmail,
 } from "../services/email/emailService.js";
+
 export const insertNewUser = async (req, res, next) => {
   try {
     //todo signUp process
@@ -99,15 +104,27 @@ export const loginUser = async (req, res, next) => {
     const { email, password } = req.body;
     console.log(email, password);
     //get user by email
+    const user = await getUserByEmail(email);
+    if (user?._id) {
+      console.log(user);
+      // compare pasword
+      const isPassMatched = comparePassword(password, user.password);
+      if (isPassMatched) {
+        console.log("user authenticate successfullly ");
+        //  create jwt
+        const jwt = {};
+        // response jwt s
+        return responseClient({
+          req,
+          res,
+          message: "login successfully ",
+          payload: jwt,
+        });
+      }
+    }
 
-    // compare pasword
-
-    //  create jwt
-
-    // response jwt s
-
-    const message = "To do login ";
-    const statusCode = 400;
+    const message = "invalid loging details";
+    const statusCode = 401;
     responseClient({ req, res, message, statusCode });
   } catch (error) {
     next(error);
