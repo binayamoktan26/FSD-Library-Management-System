@@ -8,7 +8,9 @@ export const createNewUser = (userObj) => {
 };
 export const updateUser = (filter, update) => {
   // userObj came from the fronted
-  return userSchema.findOneAndUpdate(filter, update, { new: true });
+  return userSchema.findOneAndUpdate(filter, update, {
+    returnDocument: "after",
+  });
 };
 export const getUserByEmail = (email) => {
   // update user  @email:  type string
