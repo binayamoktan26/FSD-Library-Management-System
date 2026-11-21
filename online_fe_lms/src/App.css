@@ -1,3 +1,10 @@
-.main{
-    min-height : 85vh;
+.main {
+  min-height: 85vh;
+}
+/* signpage */
+
+.sign-page {
+  background: url(./assets//login-page2.jpg) center no-repeat;
+  min-height: 100vh;
+  background-size: cover;
 }
