@@ -23,3 +23,13 @@ export const activateNewUserApi = async (payload) => {
   };
   return apiProcessor(obj);
 };
+
+export const signInNewUserApi = (payload) => {
+  const obj = {
+    url: authApiEP + "/loginUser",
+    method: "POST",
+    payload,
+    showToast: true,
+  };
+  return apiProcessor(obj);
+};
